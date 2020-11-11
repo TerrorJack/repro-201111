@@ -1,0 +1,25 @@
+name: pipeline
+
+on:
+  - push
+
+jobs:
+  build:
+    name: build
+    runs-on: windows-2019
+    steps:
+
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: setup-haskell
+        uses: actions/setup-haskell@v1
+        with:
+          stack-version: 2.5.1
+          enable-stack: true
+          stack-no-global: true
+
+      - name: build
+        run: |
+          stack ghc -- -O -threaded -rtsopts Main.hs
+          Main
