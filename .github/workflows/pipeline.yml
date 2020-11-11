@@ -20,4 +20,4 @@ jobs:
       - name: build
         run: |
           ghc -O -threaded -rtsopts Main.hs
-          Main
+          .\Main.exe
